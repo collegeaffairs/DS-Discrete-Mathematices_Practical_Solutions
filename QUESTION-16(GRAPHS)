@@ -1,0 +1,78 @@
+#include <iostream>
+#include <iomanip>
+
+using namespace std;
+
+int main()
+//Q16 ----adjacency matrix simple graph , logic-->only ii,jj,kk . .. will be zero
+//complete graph
+
+{
+    cout<<"ENTER THE NO. OF VERTICES ";
+    int size_of_matrix= 0;
+    cin>>size_of_matrix;
+
+    char** matrix ;
+
+    matrix = new char*[size_of_matrix];
+
+    for(int i=0 ;i<size_of_matrix ;++i){
+        matrix[i] = new char[size_of_matrix];
+    }
+     for(int i=0;i<size_of_matrix;++i){
+        for(int j=0;j<size_of_matrix;++j){
+            matrix[i][j] ='0';
+        }
+    }
+    cout<<"no. of pairs you want to enter : ";
+    int edges =0;
+    cin>>edges;
+    char x,y;
+    for(int i=0;i<edges;++i){
+       cout<<"pair : ";
+       cin>>x;
+       cin>>y;
+
+       int row =((int)x - 97);
+       int column = ((int)y -97);
+
+       matrix[row][column]='1';
+       matrix[column][row]='1';
+
+    }
+    cout<<"   ";
+    for(int i=0;i<size_of_matrix;++i){
+        cout<< (char)(i+97)<<"  ";
+    }
+    cout<<endl;
+
+    for(int i=0;i<size_of_matrix;++i){
+            cout<< (char)(i+97)<<"  ";
+        for(int j=0;j<size_of_matrix;++j){
+            cout<<matrix[i][j]<<"  ";
+        }
+        cout<<endl;
+    }
+
+    bool b = false;
+
+    for(int i=0;i<size_of_matrix;++i){
+        for(int j=0;j<size_of_matrix;++j){
+            if(i != j){
+                if(matrix[i][j]=='1'){
+                      b = true;
+                  continue;
+                }else{
+                    b= false;
+                break;}
+            }
+        }
+    }
+    cout<<boolalpha;
+    cout<<"RESULT : "<<b<<endl;
+
+
+
+
+    return 0;
+}
