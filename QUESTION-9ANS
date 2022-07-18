@@ -1,0 +1,72 @@
+using namespace std;
+#include <iostream>
+
+int main(){
+	//9 INSERTION SORT
+
+  int ar_size;
+    
+    
+    cout<<"enter the size of array : ";
+    cin>>ar_size;
+     int A[ar_size];
+     for(int i =0;i<ar_size;++i){
+     	 
+     	cout<<"enter "<<i+1<< " : ";
+     	cin>>A[i];
+	 }
+
+	int current,j;
+	for(int i=1;i<ar_size;i++){
+		for(int x=0;x<ar_size;x++){
+			cout<<A[x]<<" , ";
+		}
+		cout<<endl;
+		
+		
+		current=A[i];      // 9
+		j=i-1;      
+		
+		while(j>=0 && A[j]>current){  // 1 > 9 ,  //A[J] is after elements
+			
+			A[j+1]=A[j];  	//shifitng if element if greater		
+			--j;
+			}
+			
+			A[j+1]=current;    
+		}
+	
+	cout<<" The sorted elements are : ";
+	for(int k=0; k<ar_size;k++){
+		cout<<A[k]<<"  ";
+	}
+	
+	
+	
+	
+/*	
+		int A[]={1,9,5,6,1,0,7} ;
+	int current,j;
+	for(int i=1;i<7;i++){
+		current=A[i];      // 9
+		j=i-1;      
+		
+		while(j>=0 && A[j]<current){  // 1 > 9 ,  //A[J] is after elements
+			
+			A[j+1]=A[j];  	//shifitng if element if greater		
+			--j;
+			}
+			
+			A[j+1]=current;    
+		}
+	
+	for(int k=0; k<7;k++){
+		cout<<A[k]<<"  ";
+	}
+	
+	
+	*/
+	
+	
+	return 0;
+}
