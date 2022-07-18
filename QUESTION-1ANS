@@ -1,0 +1,169 @@
+#include <iostream>
+#include <iomanip>   //manipulators library
+#include <cmath>
+                 //q1
+                 
+using namespace std;
+
+class Set{       //creating class
+private:         //access modifier
+    int *arr;         //dynamic array ( pointer to integer)
+    int arr_size;     //variable
+
+public:    //access modifier
+    Set(){}           //user defined default constructor which does nothing
+    void input(){     //member functions of class set
+        cout<<"ENTER THE SIZE OF SET TO BE CREATED : ";
+        int m;
+        cin>>m;     //taking input
+
+
+
+        arr_size = m;                    //assigning input to the member variable arr_size
+        if(arr_size>0){
+            arr = new int[arr_size];     //memory allocation of same size which was input
+        }
+
+
+        for(int i=0;i<arr_size;++i){
+            cout<<i+1<<"."<<"ELEMENT "<<" = ";
+            cin>>arr[i];                          //taking input in the array by using loop
+        }
+        remove_repeated();             //calling a member method to remove repeated elements
+    }
+    void output(){                     //output function
+        cout<<"{ ";
+        for(int i=0;i<arr_size;++i){            //for loop till the size of the arr_size
+            cout<<arr[i];                       //gives output
+            if(i != (arr_size-1)){
+                cout<<" ,";
+            }
+        }
+        cout<<"}"<<endl;
+    }
+
+    void remove_repeated(){                //removing the repeated elements from the Set
+
+        for(int i=0;i<arr_size;++i){        //first picking up an element from the array of integers
+            for(int j=i+1;j<arr_size;++j){  //--->starting to check the rest of the array that is from the next element
+                                            //,,,whether they contain copies of arr[i] element.
+
+                    if(arr[i]==arr[j]){  //if any of rest of the element matches with that chosen element than
+                                              //if condition becomes true , so further we implement a loop
+                                        //this loop will assign the duplicate with its right adjacent element
+                                        //and the rest on the right side will do same , and the last will remain
+                                        //and becomes useless because we will -1 the size variable so that it points
+                                        //the elements how much we are required
+
+                       for(int z=j;z<arr_size;++z){
+                        arr[z]=arr[z+1];               //moving elements on space ahead
+                       }
+                       --arr_size;   //reducing the size
+                       --j; //this is done because a new number had came on the same place where we got a duplicate
+                            //but if we dont do -1 j than in the next loop j will be increase by 1 so the number which is at
+                            //jth postion will be not checked
+                    }
+            }
+
+        }
+    }
+
+    bool ismember(){                       //returns boolean
+        cout<<"PLZ ENTER A NUMBER  =  ";
+        int m;
+        cin>>m;
+
+        for(int i=0;i<arr_size;++i){
+            if(arr[i]==m){
+                cout<<"RESULT is  ";
+                return true;
+            }
+       }
+       return false;
+    }
+    int cardinality(){           //returns integer
+        return arr_size;
+
+    }
+
+    int powerset(){
+        int n= arr_size;
+        int countx , temp;
+        countx = pow(2,n);         //if there is 3 elements than we have 8 subset
+        cout<<"POWERSET =  ";      // for n elements we have 2 to power n subsets
+
+        for(int i=0; i<countx ; i++){ //example--this loop goes through 0 to 7 if have 3 element in set
+            temp=i;                   /*which is           000   here we print no element from the set using bitwise operators
+                                                           001   here, we use one element from the set
+                                                           010
+                                                           011
+                                                           100
+                                                           101
+                                                           110
+                                                           111  here, we print all the three element
+            */
+            cout<<" { ";
+            for(int j=0;j<arr_size;++j){      // j is used in arr to display the element .
+                if(temp & 1 == 1)  // example --  110 , in first loop & with 1 is 0(false),
+                                                  // in 2nd loop after shifting right , we got 1 so it is true
+                                                  //therefore prints the element which is at j
+
+                    cout<<arr[j]<<" ";      //prints the element from the set when if condition is satisfies
+
+                    temp=temp>>1;    //example 110 will become (011)-->print a element and than (001)-->print other
+
+
+            }
+            cout<<" } ";
+        }
+    }
+
+    ~Set(){                      //destructors
+        delete[]arr;             //empties the stack
+    }
+};
+
+
+int main()
+{
+
+    cout<<boolalpha;            //boolean value will show in true/false
+    Set A;
+    A.input();
+    A.output();
+    bool close= false;
+    while(!close){
+    cout<<"\nMENU"<<endl;
+
+    cout<<" 1. ISMEMBER "<<endl;
+    cout<<" 2. CARDINALITY " <<endl;
+    cout<<" 3. POWER SET "<<endl;
+    cout<<" 4. the menu will be closed "<<endl;
+    cout<<"\n please enter a NUMBER : ";
+
+    int button =0;
+
+    cin>>button;
+    switch(button){
+        case 1 :cout<<A.ismember();
+                break;
+        case 2 :
+                cout<<"Cardinality is "<<A.cardinality();
+                break;
+        case 3 :A.powerset();
+                break;
+        case 4 :cout<<"Closed---------the menu  ------------------------------------------------------";
+                close = true;
+                break;
+        default:cout<<"you entered a Invalid data"<<endl;
+                break;
+
+    }
+    }
+
+
+
+
+    cout<<endl;
+    return 0;
+}
