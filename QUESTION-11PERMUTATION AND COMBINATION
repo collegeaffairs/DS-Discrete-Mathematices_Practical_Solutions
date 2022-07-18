@@ -1,0 +1,70 @@
+#include <iostream>
+
+using namespace std;
+
+//q11
+int combination(int n,int r){
+    if(n==r || r==0) {
+        return 1;
+    }
+    return combination(n-1,r-1)+combination(n-1,r);
+}
+int permutation(int n, int r){
+
+    if(n==r || r==0){
+        return 1;
+    }
+
+    return n*permutation(n-1,r-1);
+
+
+}
+
+int main()
+{
+    bool xx= true;
+    while(xx){
+
+
+
+
+    cout<<"1.]COMBINATION"<<endl;
+    cout<<"2.]PERMUTATION"<<endl;
+    cout<<"3.]end the program"<<endl;
+    cout<<"ENTER THE CHOICE"<<endl;
+
+    int sel=0;
+    cin>>sel;
+    if(sel!=3){
+
+
+
+    cout<<" n : ";
+    int a=0,b=0;
+    cin>>a;
+    cout<<" r : ";
+    cin>>b;
+
+
+    if(a>0 && b>=0 && a>b){
+
+   cout<<"RESULT : ";
+    switch(sel){
+
+    case 1:
+            cout<<combination(a,b)<<endl<<endl;
+            break;
+    case 2 :
+            cout<<permutation(a,b)<<endl<<endl;
+            break;
+
+    default:cout<<"INVALID INPUT"<<endl;
+    }
+    }
+    else{
+    cout<<"NOT COMATIABLE HERE"<<endl;}
+    }else{
+    xx=false;}
+    }
+    return 0;
+}
