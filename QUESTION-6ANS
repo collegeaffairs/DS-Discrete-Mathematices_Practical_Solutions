@@ -1,0 +1,33 @@
+#include <iostream>
+using namespace std;
+
+int fun(int n){
+	
+	if(n==0){
+		return 0;
+	}
+	if(n==1){
+		return 1;
+	}
+	
+		return 2*fun(n-1)+1;
+}
+
+
+int main() {
+	
+	// q 6. )tower of hanoi
+	
+	int n;
+	cout<<"enter value of n  : ";
+	cin>>n;
+
+	cout<<"THE NUMBER OF STEPS : ";
+	cout<<fun(n);
+	
+	
+	
+	
+	
+	return 0;
+}
