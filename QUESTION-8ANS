@@ -1,0 +1,48 @@
+Solution 8:
+
+
+#include <iostream>
+
+using namespace std;
+
+int small(int arr[],int ar_size){
+
+    int small = arr[0];
+
+
+    for(int i=1;i<ar_size;++i){
+        if(arr[i]<small){
+            small=arr[i];
+        }
+    }
+    return small;
+}
+
+int main()
+{
+    int ar_size;   
+    cout<<"enter the size of array : ";
+    cin>>ar_size;
+    int arr[ar_size];
+    for(int i =0;i<ar_size;++i){
+    	cout<<"enter "<<i+1<< " : ";
+    	cin>>arr[i];
+	}
+    int temp;
+    bool done=false;
+    for(int i=0;i<ar_size;++i){ 
+        for(int j=0;j<ar_size-1;++j){
+            for(int k=0;k<ar_size; ++k){
+
+        cout<<arr[k]<<" , ";}
+        cout<<endl;
+            if(arr[j]> arr[j+1]){
+                temp= arr[j];
+                arr[j]=arr[j+1];
+                arr[j+1]=temp;
+            }
+        }
+        cout<<endl<<endl;
+    }
+    return 0;
+}
