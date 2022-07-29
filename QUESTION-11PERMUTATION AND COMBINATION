@@ -1,8 +1,9 @@
+//Solution 11:
+
 #include <iostream>
 
 using namespace std;
 
-//q11
 int combination(int n,int r){
     if(n==r || r==0) {
         return 1;
